@@ -18,7 +18,7 @@ export default class Main extends LightningElement {
                 type: 'boolean',
                 difficulty: 'easy',
                 question:
-                    '&quot;Undertale&quot; is an RPG created by Toby Fox and released in 2015.',
+                    '"Undertale" is an RPG created by Toby Fox and released in 2015.',
                 correct_answer: 'True',
                 incorrect_answers: ['False']
             },
@@ -34,7 +34,7 @@ export default class Main extends LightningElement {
                 category: 'Entertainment: Video Games',
                 type: 'boolean',
                 difficulty: 'easy',
-                question: '&quot;Half-Life 2&quot; runs on the Source Engine.',
+                question: '"Half-Life 2" runs on the Source Engine.',
                 correct_answer: 'True',
                 incorrect_answers: ['False']
             },
@@ -61,7 +61,7 @@ export default class Main extends LightningElement {
                 type: 'boolean',
                 difficulty: 'easy',
                 question:
-                    'Deus Ex (2000) does not feature the World Trade Center because it was destroyed by terrorist attacks according to the game&#039;s plot.',
+                    'Deus Ex (2000) does not feature the World Trade Center because it was destroyed by terrorist attacks according to the plot of the game.',
                 correct_answer: 'True',
                 incorrect_answers: ['False']
             },
@@ -70,7 +70,7 @@ export default class Main extends LightningElement {
                 type: 'boolean',
                 difficulty: 'easy',
                 question:
-                    'The 2005 video game &quot;Call of Duty 2: Big Red One&quot; is not available on PC.',
+                    'The 2005 video game "Call of Duty 2: Big Red One" is not available on PC.',
                 correct_answer: 'True',
                 incorrect_answers: ['False']
             },
@@ -88,7 +88,7 @@ export default class Main extends LightningElement {
                 type: 'boolean',
                 difficulty: 'easy',
                 question:
-                    'In &quot;Undertale&quot;, the main character of the game is Sans.',
+                    'In "Undertale", the main character of the game is Sans.',
                 correct_answer: 'False',
                 incorrect_answers: ['True']
             }
