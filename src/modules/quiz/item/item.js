@@ -1,22 +1,18 @@
-/* eslint-disable no-alert */
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, track } from 'lwc';
 
 export default class Item extends LightningElement {
     @api question = '';
+    @track feedback = '';
 
     compareTrueAnswer() {
-        if (this.question.correct_answer === 'True') {
-            alert('Correct!');
-        } else {
-            alert('Incorrect!');
-        }
+        this.feedback =
+            this.question.correct_answer === 'True' ? 'Correct!' : 'Incorrect!';
     }
 
     compareFalseAnswer() {
-        if (this.question.correct_answer === 'False') {
-            alert('Correct!');
-        } else {
-            alert('Incorrect!');
-        }
+        this.feedback =
+            this.question.correct_answer === 'False'
+                ? 'Correct!'
+                : 'Incorrect!';
     }
 }

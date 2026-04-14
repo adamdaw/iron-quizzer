@@ -3,5 +3,8 @@
         <h2>{question.question}</h2>
         <button onclick={compareTrueAnswer}>True</button>
         <button onclick={compareFalseAnswer}>False</button>
+        <template lwc:if={feedback}>
+            <p class="feedback">{feedback}</p>
+        </template>
     </div>
 </template>

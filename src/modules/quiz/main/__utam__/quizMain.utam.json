@@ -1,0 +1,18 @@
+{
+    "root": true,
+    "selector": {
+        "css": "quiz-main"
+    },
+    "shadow": {
+        "elements": [
+            {
+                "name": "items",
+                "public": true,
+                "selector": {
+                    "css": "quiz-item",
+                    "returnAll": true
+                }
+            }
+        ]
+    }
+}

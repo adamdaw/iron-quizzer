@@ -19,6 +19,10 @@ node_modules
 # Jest coverage folder
 /coverage
 
+# UTAM generated page objects and lint reports
+src/modules/__utam__/
+*.sarif
+
 # MacOS system files
 .DS_Store
 

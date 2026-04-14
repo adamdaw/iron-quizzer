@@ -1,0 +1,37 @@
+{
+    "shadow": {
+        "elements": [
+            {
+                "name": "questionText",
+                "public": true,
+                "selector": {
+                    "css": "h2"
+                }
+            },
+            {
+                "name": "trueButton",
+                "public": true,
+                "selector": {
+                    "css": "button:first-child"
+                },
+                "type": ["clickable"]
+            },
+            {
+                "name": "falseButton",
+                "public": true,
+                "selector": {
+                    "css": "button:nth-child(2)"
+                },
+                "type": ["clickable"]
+            },
+            {
+                "name": "feedbackText",
+                "public": true,
+                "selector": {
+                    "css": ".feedback"
+                },
+                "nullable": true
+            }
+        ]
+    }
+}
