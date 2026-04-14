@@ -1,0 +1,118 @@
+.quiz {
+    width: 100%;
+    max-width: 480px;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.quiz__loading,
+.quiz__error,
+.quiz__progress {
+    text-align: center;
+}
+
+.quiz__loading,
+.quiz__progress {
+    font-size: 0.875rem;
+    color: #706e6b;
+    margin: 0 0 0.75rem;
+}
+
+.quiz__error {
+    font-size: 0.875rem;
+    color: #c23934;
+    margin: 0 0 1rem;
+}
+
+/* Question wrapper with enter/exit animations */
+.quiz__question-wrap {
+    animation: quiz-fade-in 0.4s ease both;
+}
+
+.quiz__question-wrap--exiting {
+    animation: quiz-fade-out 0.4s ease both;
+    pointer-events: none;
+}
+
+@keyframes quiz-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes quiz-fade-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+}
+
+/* Result / completion card */
+.quiz__result {
+    animation: quiz-fade-in 0.4s ease both;
+    background: #ffffff;
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.quiz__score {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #3e3e3c;
+    margin: 0 0 1.5rem;
+}
+
+/* SLDS Brand Button — play again / retry */
+.quiz__play-again,
+.quiz__retry {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    padding: 0 1rem;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #ffffff;
+    background-color: #0070d2;
+    border: 1px solid #0070d2;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease;
+    white-space: nowrap;
+    min-width: 8rem;
+    margin: 0 auto;
+}
+
+.quiz__play-again:hover,
+.quiz__retry:hover {
+    background-color: #005fb2;
+    border-color: #005fb2;
+}
+
+.quiz__play-again:focus,
+.quiz__retry:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 112, 210, 0.5);
+}
+
+.quiz__play-again:active,
+.quiz__retry:active {
+    background-color: #005098;
+    border-color: #005098;
+}

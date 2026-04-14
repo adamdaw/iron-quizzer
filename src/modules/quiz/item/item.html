@@ -1,10 +1,28 @@
 <template>
-    <div class="center">
-        <h2>{question.question}</h2>
-        <button onclick={compareTrueAnswer}>True</button>
-        <button onclick={compareFalseAnswer}>False</button>
-        <template lwc:if={feedback}>
-            <p class="feedback">{feedback}</p>
+    <div class="question">
+        <p class="question__text" id="question-text">{question.question}</p>
+        <div class="question__actions">
+            <button
+                class="question__button"
+                data-value="True"
+                onclick={handleAnswer}
+                disabled={isAnswered}
+                aria-describedby="question-text"
+            >
+                True
+            </button>
+            <button
+                class="question__button"
+                data-value="False"
+                onclick={handleAnswer}
+                disabled={isAnswered}
+                aria-describedby="question-text"
+            >
+                False
+            </button>
+        </div>
+        <template lwc:if={feedbackText}>
+            <p class={feedbackClass}>{feedbackText}</p>
         </template>
     </div>
 </template>

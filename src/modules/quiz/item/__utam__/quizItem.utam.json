@@ -5,14 +5,14 @@
                 "name": "questionText",
                 "public": true,
                 "selector": {
-                    "css": "h2"
+                    "css": ".question__text"
                 }
             },
             {
                 "name": "trueButton",
                 "public": true,
                 "selector": {
-                    "css": "button:first-child"
+                    "css": "button[data-value='True']"
                 },
                 "type": ["clickable"]
             },
@@ -20,7 +20,7 @@
                 "name": "falseButton",
                 "public": true,
                 "selector": {
-                    "css": "button:nth-child(2)"
+                    "css": "button[data-value='False']"
                 },
                 "type": ["clickable"]
             },
@@ -28,7 +28,7 @@
                 "name": "feedbackText",
                 "public": true,
                 "selector": {
-                    "css": ".feedback"
+                    "css": ".question__feedback"
                 },
                 "nullable": true
             }

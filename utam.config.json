@@ -2,8 +2,5 @@
     "pageObjectsRootDir": "src/modules",
     "pageObjectsFileMask": ["**/__utam__/*.utam.json"],
     "pageObjectsOutputDir": "__utam__/pageObjects",
-    "version": "1",
-    "alias": {
-        "quiz/quizItem": "./quizItem"
-    }
+    "version": "1"
 }

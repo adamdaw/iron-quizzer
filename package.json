@@ -4,7 +4,6 @@
     "author": "Adam Daw",
     "bugs": "https://github.com/adamdaw/iron-quizzer/issues",
     "devDependencies": {
-        "@lwc/engine-server": "^9.1.3",
         "@lwc/jest-preset": "^19.6.0",
         "@rollup/plugin-replace": "^6.0.3",
         "@salesforce/eslint-config-lwc": "^4.1.2",
@@ -52,7 +51,7 @@
     "scripts": {
         "build": "rollup -c --environment BUILD:production",
         "build:development": "rollup -c",
-        "lint": "eslint src/**/*.js",
+        "lint": "eslint \"src/**/*.js\"",
         "prepare": "husky",
         "prettier": "prettier --write '**/*.{css,html,js,json,md,ts,yaml,yml}'",
         "prettier:verify": "prettier --list-different '**/*.{css,html,js,json,md,ts,yaml,yml}'",
@@ -62,6 +61,7 @@
         "test:unit:debug": "jest --debug",
         "test:unit:watch": "jest --watch",
         "test:utam:compile": "utam -c utam.config.json",
+        "pretest:ui": "npm run test:utam:compile",
         "test:ui": "start-server-and-test serve http://localhost:8000 wdio",
         "wdio": "wdio run wdio.conf.js",
         "watch": "rollup -c --watch"

@@ -1,101 +1,97 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
+
+const API_URL = 'https://opentdb.com/api.php?amount=10&type=boolean';
+const FEEDBACK_DURATION_MS = 1500;
+const TRANSITION_DURATION_MS = 400;
+
+function decodeHtml(str) {
+    return new DOMParser().parseFromString(str, 'text/html').body.textContent;
+}
 
 export default class Main extends LightningElement {
-    @track quiz = {
-        response_code: 0,
-        results: [
-            {
-                category: 'Entertainment: Video Games',
-                type: 'boolean',
-                difficulty: 'easy',
-                question:
-                    'Peter Molyneux was the founder of Bullfrog Productions.',
-                correct_answer: 'True',
-                incorrect_answers: ['False']
-            },
-            {
-                category: 'Entertainment: Video Games',
-                type: 'boolean',
-                difficulty: 'easy',
-                question:
-                    '"Undertale" is an RPG created by Toby Fox and released in 2015.',
-                correct_answer: 'True',
-                incorrect_answers: ['False']
-            },
-            {
-                category: 'Entertainment: Video Games',
-                type: 'boolean',
-                difficulty: 'easy',
-                question: 'Luigi is taller than Mario?',
-                correct_answer: 'True',
-                incorrect_answers: ['False']
-            },
-            {
-                category: 'Entertainment: Video Games',
-                type: 'boolean',
-                difficulty: 'easy',
-                question: '"Half-Life 2" runs on the Source Engine.',
-                correct_answer: 'True',
-                incorrect_answers: ['False']
-            },
-            {
-                category: 'Entertainment: Video Games',
-                type: 'boolean',
-                difficulty: 'easy',
-                question:
-                    'Pac-Man was invented by the designer Toru Iwatani while he was eating pizza.',
-                correct_answer: 'True',
-                incorrect_answers: ['False']
-            },
-            {
-                category: 'Entertainment: Video Games',
-                type: 'boolean',
-                difficulty: 'easy',
-                question:
-                    'In &quot;Super Mario Bros.&quot;, the clouds and bushes have the same artwork and are just different colors.',
-                correct_answer: 'True',
-                incorrect_answers: ['False']
-            },
-            {
-                category: 'Entertainment: Video Games',
-                type: 'boolean',
-                difficulty: 'easy',
-                question:
-                    'Deus Ex (2000) does not feature the World Trade Center because it was destroyed by terrorist attacks according to the plot of the game.',
-                correct_answer: 'True',
-                incorrect_answers: ['False']
-            },
-            {
-                category: 'Entertainment: Video Games',
-                type: 'boolean',
-                difficulty: 'easy',
-                question:
-                    'The 2005 video game "Call of Duty 2: Big Red One" is not available on PC.',
-                correct_answer: 'True',
-                incorrect_answers: ['False']
-            },
-            {
-                category: 'Entertainment: Video Games',
-                type: 'boolean',
-                difficulty: 'easy',
-                question:
-                    'In Pok&eacute;mon, Bulbasaur is the only starter pokemon that is a Grass/Poison type.',
-                correct_answer: 'True',
-                incorrect_answers: ['False']
-            },
-            {
-                category: 'Entertainment: Video Games',
-                type: 'boolean',
-                difficulty: 'easy',
-                question:
-                    'In "Undertale", the main character of the game is Sans.',
-                correct_answer: 'False',
-                incorrect_answers: ['True']
-            }
-        ]
-    };
+    _questions = [];
+    _loading = true;
+    _error = null;
+    _currentIndex = 0;
+    _score = 0;
+    _exiting = false;
 
-    get questions() {
-        return this.quiz.results;
+    connectedCallback() {
+        this._fetchQuestions();
+    }
+
+    _fetchQuestions() {
+        this._loading = true;
+        this._error = null;
+        this._currentIndex = 0;
+        this._score = 0;
+        this._exiting = false;
+
+        fetch(API_URL)
+            .then((res) => res.json())
+            .then((data) => {
+                this._questions = data.results.map((q, idx) => ({
+                    ...q,
+                    id: idx + 1,
+                    question: decodeHtml(q.question)
+                }));
+                this._loading = false;
+            })
+            .catch(() => {
+                this._error = 'Failed to load questions. Please try again.';
+                this._loading = false;
+            });
+    }
+
+    get currentQuestion() {
+        return this._questions[this._currentIndex] || null;
+    }
+
+    get isLoading() {
+        return this._loading;
+    }
+
+    get loadError() {
+        return this._error;
+    }
+
+    get isComplete() {
+        return (
+            this._currentIndex >= this._questions.length &&
+            this._questions.length > 0
+        );
+    }
+
+    get progressText() {
+        return `Question ${this._currentIndex + 1} of ${this._questions.length}`;
+    }
+
+    get scoreText() {
+        return `You scored ${this._score} / ${this._questions.length}`;
+    }
+
+    get questionWrapperClass() {
+        return this._exiting
+            ? 'quiz__question-wrap quiz__question-wrap--exiting'
+            : 'quiz__question-wrap';
+    }
+
+    handleAnswer(event) {
+        if (event.detail.correct) {
+            this._score += 1;
+        }
+        // eslint-disable-next-line @lwc/lwc/no-async-operation
+        setTimeout(() => {
+            this._exiting = true;
+            // eslint-disable-next-line @lwc/lwc/no-async-operation
+            setTimeout(() => {
+                this._currentIndex += 1;
+                this._exiting = false;
+            }, TRANSITION_DURATION_MS);
+        }, FEEDBACK_DURATION_MS);
+    }
+
+    handlePlayAgain() {
+        this._fetchQuestions();
     }
 }

@@ -1,9 +1,30 @@
 <template>
-    <!-- LWC sample component <my-greeting> -->
-    <div class="center">
-        <template for:each={questions} for:item="question">
-            <!-- <p key={question.question}>{question.question}</p> -->
-            <quiz-item key={question.question} question={question}></quiz-item>
+    <div class="quiz">
+        <template lwc:if={isLoading}>
+            <p class="quiz__loading">Loading questions&#x2026;</p>
+        </template>
+        <template lwc:elseif={loadError}>
+            <p class="quiz__error">{loadError}</p>
+            <button class="quiz__retry" onclick={handlePlayAgain}>
+                Try Again
+            </button>
+        </template>
+        <template lwc:elseif={isComplete}>
+            <div class="quiz__result">
+                <p class="quiz__score">{scoreText}</p>
+                <button class="quiz__play-again" onclick={handlePlayAgain}>
+                    Play Again
+                </button>
+            </div>
+        </template>
+        <template lwc:elseif={currentQuestion}>
+            <p class="quiz__progress">{progressText}</p>
+            <div class={questionWrapperClass}>
+                <quiz-item
+                    question={currentQuestion}
+                    onanswer={handleAnswer}
+                ></quiz-item>
+            </div>
         </template>
     </div>
 </template>

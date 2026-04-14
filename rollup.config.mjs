@@ -9,6 +9,7 @@ export default {
     output: {
         file: 'dist/main.js',
         format: 'esm',
+        sourcemap: dev,
     },
     plugins: [
         lwc(),
