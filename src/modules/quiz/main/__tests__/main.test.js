@@ -5,7 +5,6 @@ import Main from 'quiz/main';
 // because Promise.resolve() is a native microtask, not a timer.
 const flushPromises = async () => {
     for (let i = 0; i < 10; i++) {
-        // eslint-disable-next-line no-await-in-loop
         await Promise.resolve();
     }
 };
@@ -165,7 +164,6 @@ describe('question progression', () => {
     it('shows score after all 10 questions answered', async () => {
         const el = await createMain();
         for (let i = 0; i < 10; i++) {
-            // eslint-disable-next-line no-await-in-loop
             await answerCurrent(el, i < 7); // 7 correct
         }
         expect(el.shadowRoot.querySelector('.quiz__score').textContent).toBe(
@@ -176,7 +174,6 @@ describe('question progression', () => {
     it('shows play again button after completion', async () => {
         const el = await createMain();
         for (let i = 0; i < 10; i++) {
-            // eslint-disable-next-line no-await-in-loop
             await answerCurrent(el, true);
         }
         expect(el.shadowRoot.querySelector('.quiz__play-again')).not.toBeNull();
@@ -185,7 +182,6 @@ describe('question progression', () => {
     it('reloads to question 1 when play again clicked', async () => {
         const el = await createMain();
         for (let i = 0; i < 10; i++) {
-            // eslint-disable-next-line no-await-in-loop
             await answerCurrent(el, true);
         }
         el.shadowRoot.querySelector('.quiz__play-again').click();

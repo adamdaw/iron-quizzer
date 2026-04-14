@@ -10,6 +10,12 @@ module.exports = [
         }
     },
     {
+        files: ['**/__tests__/**/*.js', '**/*.spec.js'],
+        rules: {
+            'no-await-in-loop': 'off'
+        }
+    },
+    {
         ignores: ['dist/', 'lib/']
     }
 ];
