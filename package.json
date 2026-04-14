@@ -4,21 +4,17 @@
     "author": "Adam Daw",
     "bugs": "https://github.com/adamdaw/iron-quizzer/issues",
     "dependencies": {
-        "lwc-services": "^1.3.9"
+        "lwc-services": "^3.2.2"
     },
     "devDependencies": {
-        "husky": "^3.1.0",
-        "lint-staged": "^9.4.3"
+        "husky": "^9.1.7",
+        "lint-staged": "^16.4.0",
+        "prettier": "^3.8.2"
     },
     "engines": {
-        "node": ">=10.0.0"
+        "node": ">=14.0.0"
     },
     "homepage": "https://github.com/adamdaw/iron-quizzer",
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
     "keywords": [
         "lwc"
     ],
@@ -29,16 +25,29 @@
         ],
         "./src/**/*.js": [
             "eslint"
-        ],
-        "*": [
-            "git add"
         ]
+    },
+    "overrides": {
+        "braces": ">=3.0.3",
+        "cross-spawn": ">=7.0.5",
+        "immer": ">=9.0.6",
+        "loader-utils": ">=2.0.4",
+        "micromatch": ">=4.0.8",
+        "minimatch": "3.1.4",
+        "node-forge": ">=1.4.0",
+        "rollup": ">=2.79.2 <3.0.0",
+        "semver": ">=7.5.2",
+        "serialize-javascript": ">=7.0.5",
+        "shell-quote": ">=1.7.3",
+        "webpack": "^5.94.0",
+        "webpack-dev-middleware": ">=5.3.4"
     },
     "repository": "adamdaw/iron-quizzer",
     "scripts": {
         "build": "lwc-services build -m production",
         "build:development": "lwc-services build",
         "lint": "eslint ./src/**/*.js",
+        "prepare": "husky",
         "prettier": "prettier --write '**/*.{css,html,js,json,md,ts,yaml,yml}'",
         "prettier:verify": "prettier --list-different '**/*.{css,html,js,json,md,ts,yaml,yml}'",
         "serve": "lwc-services serve",
