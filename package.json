@@ -26,7 +26,7 @@
         "wdio-utam-service": "^3.3.0"
     },
     "overrides": {
-        "axios": "^1.16.0",
+        "axios": "^1.18.1",
         "basic-ftp": "^5.3.1",
         "edgedriver": "^6.1.2",
         "fast-xml-parser": "^5.7.3",
